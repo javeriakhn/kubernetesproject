@@ -2,7 +2,7 @@
 FROM httpd:2.4
 
 # Copy your website template files into the container
-COPY . C:\Users\Javeria Kashan\Downloads\projectA /usr/local/apache2/htdocs/
+COPY . https://www.free-css.com/assets/files/free-css-templates/download/page258/beauty.zip /usr/local/apache2/htdocs/
 
 # Expose port 80 to allow incoming HTTP traffic
 EXPOSE 80
