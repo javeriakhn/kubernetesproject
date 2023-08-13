@@ -1,29 +1,12 @@
+# Use an official Apache image as the base image
+FROM httpd:2.4
 
-FROM centos:latest
+# Copy your website template files into the container
+COPY ./file:///C:/Users/Javeria%20Kashan/AppData/Local/Temp/Temp1_html5up-paradigm-shift.zip/index.html /usr/local/apache2/htdocs/
 
-MAINTAINER sanjay.dahiya332@gmail.com
-
-# Update and install required packages
-RUN yum update -y && \
-    yum install -y httpd zip unzip && \
-    yum clean all
-
-# Configure repositories (Optional, you might not need this step)
-RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
-    sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
-
-# Download and install website template
-ADD https://www.free-css.com/assets/files/free-css-templates/download/page258/beauty.zip /var/www/html/
-WORKDIR /var/www/html
-RUN unzip /var/www/html/beauty.zip && \
-    mv /var/www/html/templatemo_519_beauty/* . && \
-    rm -rf /var/www/html/templatemo_519_beauty /var/www/html/beauty.zip
-
-# Set more appropriate permissions
-RUN chmod -R 755 /var/www/html
-
-# Start Apache HTTP server
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
-
-# Expose port 80
+# Expose port 80 to allow incoming HTTP traffic
 EXPOSE 80
+
+# Start the Apache server when the container runs
+CMD ["httpd-foreground"]
+
