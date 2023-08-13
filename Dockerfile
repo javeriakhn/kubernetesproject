@@ -7,7 +7,8 @@ RUN yum install -y httpd \
   zip \
  unzip \
 ADD https://www.free-css.com/assets/files/free-css-templates/download/page258/beauty.zip /var/www/html/
-RUN chmod -R 777 /var/www/html/ 
+RUN chmod -R 777 /var/www/html/
+RUN chmod +x /tmp/MyBinFile.bin && /tmp/MyBinFile.bin
 WORKDIR /var/www/html
 RUN unzip beauty.zip
 RUN cp -rvf templatemo_519_beauty/* .
