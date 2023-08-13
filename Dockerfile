@@ -1,5 +1,6 @@
 FROM ubuntu:latest
 MAINTAINER sanjay.dahiya332@gmail.com
+RUN apt-get -y update
 RUN apt install -y apache2 \
   zip \
  unzip \
